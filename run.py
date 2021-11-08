@@ -1,6 +1,5 @@
 from torch.nn import functional as F
 from torch.utils import data as torch_data
-import cv2
 from pydicom.pixel_data_handlers.util import apply_voi_lut
 import pandas as pd
 import random
