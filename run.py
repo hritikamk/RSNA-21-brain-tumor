@@ -81,7 +81,7 @@ class CNN(nn.Module):
         self.net = efficientnet_pytorch.EfficientNet.from_name(
             "efficientnet-b0")
         checkpoint = torch.load(
-            '../input/efficientnet-pytorch/efficientnet-b0-08094119.pth')
+            'efficientnet-b0-08094119.pth')
         self.net.load_state_dict(checkpoint)
         n_features = self.net._fc.in_features
         self.net._fc = nn.Linear(
@@ -135,12 +135,13 @@ def load_dicom_line(path):
     return images
 
 
-def read_video(self, vid_paths):
+def read_video(vid_paths):
     video = [load_dicom(path) for path in vid_paths]
+    # video = torch.tensor(video)
     if len(video) == 0:
         video = torch.zeros(n_frames, img_size, img_size)
-    else:
-        video = torch.stack(video)  # T * C * H * W
+    # else:
+        # video = torch.stack(video)  # T * C * H * W
 #         video = torch.transpose(video, 0, 1) # C * T * H * W
     return video
 
@@ -172,7 +173,7 @@ def uniform_temporal_subsample(x, num_samples):
     return [x[i] for i in indices]
 
 
-def predict():
+def predict(predict_path):
     model = load_model()
     patient_path = f"./00001"
     channels = []
@@ -189,6 +190,7 @@ def predict():
             in_frames_path = uniform_temporal_subsample(t_paths, num_samples)
 
         channel = read_video(in_frames_path)
+        channel = torch.tensor(channel)
         if channel.shape[0] == 0:
             print("1 channel empty")
             channel = torch.zeros(num_samples, img_size, img_size)
@@ -196,6 +198,10 @@ def predict():
 
     channels = torch.stack(channels).transpose(0, 1)
     model.eval()
+    print(channels.shape)
+    channels = torch.reshape(
+        channels, (1, channels.shape[0], channels.shape[1], channels.shape[2], channels.shape[3]))
+    channels = channels.float()
     tmp_res = torch.sigmoid(model(channels.to(device))).cpu().numpy().squeeze
     st.write(tmp_res)
     return None
@@ -218,5 +224,5 @@ def run_app():
     st.balloons()
     predict_path = "./00001"
     prediction = predict(predict_path)
-
+    st.write(prediction)
     return None
