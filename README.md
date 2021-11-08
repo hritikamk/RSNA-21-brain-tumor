@@ -1,4 +1,4 @@
-# RSNA-21-brain-tumor-detection 
+# RSNA-21-brain-tumor-detection-and-classification
 detects brain tumor based on MGMT values and MRI images 
 
 
