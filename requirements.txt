@@ -3,3 +3,7 @@ torch
 pydicom 
 efficientnet-pytorch
 opencv 
+numpy 
+matplotlib 
+glob 
+pandas
