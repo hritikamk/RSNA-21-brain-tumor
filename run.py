@@ -217,7 +217,10 @@ def run_app():
 
     file_uploaded = st.file_uploader(
         "Upload dicom file folder zipped", accept_multiple_files=True)
-    anima = create_animation(load_dicom_line("00001/FLAIR"))
+    directory = os.getcwd()
+    print(directory)
+    print(os.listdir(directory))
+    anima = create_animation(load_dicom_line("./00001/FLAIR"))
     #HtmlFile = line_ani.to_html5_video()
     with open("myvideo.html", "w") as f:
         print(anima.to_html5_video(), file=f)
