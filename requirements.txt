@@ -4,5 +4,5 @@ pydicom
 efficientnet-pytorch
 numpy 
 matplotlib 
-glob 
+glob2
 pandas
