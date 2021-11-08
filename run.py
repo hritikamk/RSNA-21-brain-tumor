@@ -20,7 +20,8 @@ from torch.utils.data import Dataset, DataLoader
 
 
 rc('animation', html='jshtml')
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = "cpu"
 
 img_size = 256
 n_frames = 10
@@ -202,8 +203,14 @@ def predict(predict_path):
     channels = torch.reshape(
         channels, (1, channels.shape[0], channels.shape[1], channels.shape[2], channels.shape[3]))
     channels = channels.float()
-    tmp_res = torch.sigmoid(model(channels.to(device))).cpu().numpy().squeeze
+    tmp_res = torch.sigmoid(model(channels.to(device))
+                            ).detach().numpy()
     st.write(tmp_res)
+
+    if tmp_res[0][0] > 0.5:
+        st.title("brain cancer detected ")
+    else:
+        st.title("brain cancer not detected in MRI scan ")
     return None
 
 
