@@ -19,8 +19,8 @@ from torch.utils.data import Dataset, DataLoader
 
 
 rc('animation', html='jshtml')
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-device = "cpu"
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = "cpu"
 
 img_size = 256
 n_frames = 10
