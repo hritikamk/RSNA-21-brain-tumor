@@ -1,7 +1,7 @@
 # RSNA-21-brain-tumor-detection-and-classification
 detects brain tumor based on MGMT values and MRI images 
 
-
+# streamlit link https://share.streamlit.io/hritikamk/rsna-21-brain-tumor/main/app.py
 # significance of the MGMT values in the brain tumor detection 
 there are 4 kind of MRI images in the dataset 
 * FLAIR
