@@ -161,8 +161,7 @@ def create_animation(ims):
 def load_model():
     model = Model()
     model.to(device)
-    checkpoint = torch.load(f"./best-model-1.pth",
-                            map_location=torch.device(device))
+    checkpoint = torch.load(f"./best-model-1.pth")
     model.load_state_dict(checkpoint["model_state_dict"])
     return model
 
