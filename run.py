@@ -229,7 +229,7 @@ def run_app():
     HtmlFile = open("myvideo.html", "r")
     # HtmlFile="myvideo.html"
     source_code = HtmlFile.read()
-    st.components.v1.html(source_code, height=900, width=900)
+    st.components.v1.html(source_code, height=600, width=900)
     st.title ("Brain cancer not detected")
     st.balloons()
     predict_path = "./00001"
