@@ -234,4 +234,5 @@ def run_app():
     predict_path = "./00001"
     prediction = predict(predict_path)
     st.write(prediction)
+    st.write(Brain tumor not detected)
     return None
